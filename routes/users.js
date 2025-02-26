@@ -38,7 +38,7 @@ router.get('/:username', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        const userID = await User.findOne({ _id: req.params.id }).select('-password');
+        const userID = await User.findOne({ _id: req.params.id });
         res.json(userID);
     } catch (error) {
         res.status(400).json({ message: error.message });
