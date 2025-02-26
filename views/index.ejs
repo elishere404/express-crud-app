@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern API Documentation</title>
+    <title>API Documentation - express crud app</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <!-- Add custom fonts -->
@@ -68,7 +68,10 @@
 </head>
 <body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen" x-data="{ activeSection: 'all' }">
     <main class="container mx-auto px-4 py-8 max-w-5xl">
-        <!-- Route Navigation -->
+        <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-8" role="alert">
+            <p class="font-bold">Warning</p>
+            <p>This application is for development purposes only and is not recommended for production use.</p>
+        </div>
         <div class="flex justify-center space-x-4 mb-8">
             <button 
                 @click="activeSection = 'all'" 
