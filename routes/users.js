@@ -36,15 +36,6 @@ router.get('/:username', async (req, res) => {
     }
 });
 
-router.get('/:id', async (req, res) => {
-    try {
-        const userID = await User.findOne({ _id: req.params.id });
-        res.json(userID);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
-});
-
 router.put('/upd/:id', authJWT, async (req, res) => {
     try {
         const updatedFields = {};
