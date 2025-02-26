@@ -29,8 +29,17 @@ router.get('/', async (req, res) => {
 
 router.get('/:username', async (req, res) => {
     try {
-        const post = await User.findOne({ username: req.params.username }).select('-password');
-        res.json(post);
+        const userName = await User.findOne({ username: req.params.username }).select('-password');
+        res.json(userName);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
+
+router.get('/:id', async (req, res) => {
+    try {
+        const userID = await User.findOne({ _id: req.params.id }).select('-password');
+        res.json(userID);
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
