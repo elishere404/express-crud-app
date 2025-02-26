@@ -65,17 +65,28 @@ app.get('/', async (req, res) => {
     const skip = (page - 1) * limit;
 
     try {
-        const posts = await postSchema.find().skip(skip).limit(limit);
+        const posts = await postSchema.find()
+            .skip(skip)
+            .limit(limit)
+            .populate('author')  
+            .exec();
+
         const totalPosts = await postSchema.countDocuments();
         const totalPages = Math.ceil(totalPosts / limit);
 
-        res.setHeader("Content-Type", "application/json"); 
+        const postsWithUsername = posts.map(post => ({
+            ...post.toJSON(),  
+            authorUsername: post.authorUsername,  
+        }));
+
+        res.setHeader("Content-Type", "application/json");
         res.send(JSON.stringify({
-            posts,
+            posts: postsWithUsername,  
             page,
             totalPages,
             totalPosts
         }, null, 2));
+
     } catch (error) {
         res.status(500).json({ msg: "internal server error" });
     }
